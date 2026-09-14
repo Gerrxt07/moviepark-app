@@ -1,0 +1,9 @@
+.language-control{padding:13px;border:1px solid var(--line);border-radius:14px;background:var(--surface-soft)}
+.language-control>div:first-child{display:grid;gap:4px}.language-control strong{font-size:13px}.language-control small{color:var(--muted);font-size:10px;line-height:1.45}
+.language-options{margin-top:11px;padding:3px;border:1px solid var(--line);border-radius:11px;display:grid;grid-template-columns:1fr 1fr;gap:3px;background:#fff}
+.language-options button{min-height:45px;padding:7px 10px;border:0;border-radius:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--muted);background:transparent;cursor:pointer;font:inherit}
+.language-options button span{display:grid;gap:1px;text-align:left}.language-options button b{color:inherit;font-size:11px}.language-options button small{font-size:8px}.language-options button i{font-style:normal;font-weight:900}
+.language-options button.is-selected{color:#fff;background:var(--green);box-shadow:0 5px 14px rgba(7,115,84,.18)}
+.language-control>p{margin:9px 0 0;color:var(--muted);font-size:9px;line-height:1.45}
+html[data-locale="en"] [lang="de"]{font-style:normal}
+@media(max-width:430px){.language-options{grid-template-columns:1fr}.language-options button{min-height:42px}}

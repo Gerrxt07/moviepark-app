@@ -1,0 +1,181 @@
+/* Final layout layer: one spacing and positioning system for every route. */
+:root {
+  --layout-max: 1120px;
+  --layout-reading: 960px;
+  --layout-gutter: clamp(16px, 3.2vw, 32px);
+  --layout-top: clamp(18px, 3vw, 34px);
+  --layout-bottom: calc(124px + env(safe-area-inset-bottom));
+  --space-1: 6px;
+  --space-2: 10px;
+  --space-3: 14px;
+  --space-4: 18px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 44px;
+  --card-pad: clamp(18px, 2.7vw, 30px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: calc(96px + env(safe-area-inset-top)); }
+body { min-width: 320px; }
+img, svg, canvas { max-width: 100%; }
+button, a, input, select, textarea { min-width: 0; }
+p, h1, h2, h3, strong, small, span, dd, dt { overflow-wrap: break-word; }
+
+.app-shell { min-height: 100dvh; padding-bottom: var(--layout-bottom); }
+.app-topbar { height: auto; padding: calc(10px + env(safe-area-inset-top)) var(--layout-gutter) 8px; }
+.app-topbar-inner { width: min(var(--layout-max), 100%); height: 60px; grid-template-columns: 46px minmax(0, 1fr) 46px; }
+.app-wordmark, .app-page-title { min-width: 0; }
+.app-page-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.app-tabbar { padding-right: max(12px, env(safe-area-inset-right)); padding-bottom: max(10px, env(safe-area-inset-bottom)); padding-left: max(12px, env(safe-area-inset-left)); }
+.app-tabbar-inner { width: min(520px, 100%); }
+.app-tabbar-inner > * { min-width: 0; }
+
+main,
+.home-main,
+.attractions-main,
+.forecast-page,
+.shows-main,
+.weather-detail-main,
+.services-main,
+.ride-detail-main,
+.data-info-page {
+  width: min(var(--layout-max), calc(100% - 2 * var(--layout-gutter)));
+  margin-inline: auto;
+  padding-top: var(--layout-top);
+  padding-bottom: var(--space-7);
+}
+.park-day-main, .park-map-main {
+  width: min(var(--layout-reading), calc(100% - 2 * var(--layout-gutter)));
+  padding: var(--layout-top) 0 var(--space-7);
+}
+.site-footer { width: min(var(--layout-max), calc(100% - 2 * var(--layout-gutter))); margin: var(--space-4) auto 0; padding: var(--space-5) 0; flex-wrap: wrap; text-align: center; }
+
+/* Replace ad-hoc separators and margins with a predictable vertical rhythm. */
+.home-main { gap: var(--space-5); }
+.home-main > * + * { margin-top: 0 !important; box-shadow: none !important; }
+.home-main > .welcome-hero,
+.home-main > .weather-card-v2,
+.home-main > .attractions-card.attractions-card { width: 100%; margin: 0; }
+.home-main > .welcome-hero { height: clamp(470px, 58vw, 560px); min-height: 470px; }
+.home-main > .weather-card-v2,
+.home-main > .attractions-card.attractions-card { height: clamp(500px, 54vw, 570px); min-height: 500px; }
+.home-main .coming-next { padding-top: var(--space-3); }
+.section-heading, .section-title-row, .detail-section-head { gap: var(--space-4); }
+.feature-placeholders { margin-top: var(--space-4); gap: var(--space-3); }
+.feature-placeholders > a, .feature-placeholders > article { min-width: 0; padding: var(--space-4) var(--space-5); gap: var(--space-4); }
+.feature-placeholders > * > div { min-width: 0; }
+
+/* Page heroes and content blocks align to a shared card rhythm. */
+.shows-hero, .services-hero, .forecast-hero, .weather-detail-hero,
+.ride-detail-hero, .attractions-page-intro, .data-info-hero,
+.park-day-intro, .park-map-intro { padding: var(--card-pad); }
+.shows-hero + *, .services-hero + *, .forecast-hero + *,
+.weather-detail-hero + *, .ride-detail-hero + *,
+.attractions-page-intro + *, .data-info-hero + *,
+.park-day-intro + *, .park-map-intro + * { margin-top: var(--space-5); }
+
+.attraction-controls, .favorites-sync-bar, .forecast-controls,
+.forecast-mode-banner, .park-day-location, .park-day-checkin-hint { margin-top: var(--space-4); }
+.attractions-list, .services-grid, .forecast-list, .programme-list,
+.show-alert-grid, .source-matrix, .data-info-cards { margin-top: var(--space-5); gap: var(--space-4); }
+.attractions-list > *, .services-grid > *, .forecast-list > *,
+.programme-list > *, .show-alert-grid > *, .source-matrix > *,
+.data-info-cards > * { min-width: 0; }
+
+.detail-section, .ride-insights, .prediction-table,
+.data-info-section, .park-day-next, .park-day-alternatives,
+.park-day-show, .park-day-tools, .park-day-note,
+.park-day-empty, .park-map-disclaimer, .sensor-panel { margin-top: var(--space-5); padding: var(--card-pad); }
+.detail-section > * + *, .data-info-section > * + * { margin-top: var(--space-4); }
+.ride-current { margin-top: var(--space-4); gap: var(--space-3); }
+.ride-reliability-strip, .ride-closed-guidance { margin-top: var(--space-4); }
+.ride-window-section, .ride-source-summary { margin-top: var(--space-5); }
+.prediction-table > div, .ride-window-grid, .day-summary-grid,
+.accuracy-overview, .weather-details-grid { gap: var(--space-3); }
+
+/* Horizontal collections keep their edge alignment and remain usable by touch. */
+.full-hour-strip, .tomorrow-hour-strip, .past-day-picker,
+.park-day-favorite-list { scroll-padding-inline: var(--space-3); }
+.full-hour-strip > *, .tomorrow-hour-strip > *, .past-day-picker > *,
+.park-day-favorite-list > * { scroll-snap-align: start; }
+.ride-chart-scroll { width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; }
+
+/* Dialogs use the same inset and safe-area rules as pages. */
+.more-menu-backdrop, .weather-modal-backdrop, .sync-modal-backdrop { padding: max(16px, env(safe-area-inset-top)) var(--layout-gutter) max(16px, env(safe-area-inset-bottom)); }
+.more-menu-sheet, .weather-modal-panel, .sync-modal { width: min(520px, 100%); max-height: calc(100dvh - max(32px, env(safe-area-inset-top) + env(safe-area-inset-bottom))); padding: var(--space-3) var(--space-5) var(--space-5); }
+.more-menu-sheet header, .weather-modal-head, .sync-modal > header { gap: var(--space-4); padding: var(--space-2) 0 var(--space-4); }
+.more-menu-sheet nav { padding-top: var(--space-3); }
+.more-menu-group + .more-menu-group { margin-top: var(--space-5); }
+.more-menu-item + .more-menu-item { margin-top: var(--space-2); }
+
+@media (min-width: 900px) {
+  .services-grid, .source-matrix, .data-info-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .attractions-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .weather-details-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .park-day-overview, .park-day-tools > div:last-child { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1100px) {
+  .home-main { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); align-items: stretch; }
+  .home-main > .welcome-hero, .home-main > .park-checkin,
+  .home-main > .visit-preflight, .home-main > .show-alerts,
+  .home-main > .park-suggestion, .home-main > .coming-next { grid-column: 1 / -1; }
+  .home-main > .weather-card-v2 { grid-column: 1; }
+  .home-main > .attractions-card { grid-column: 2; }
+  .home-main > .weather-card-v2, .home-main > .attractions-card.attractions-card { height: 570px; min-height: 570px; }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --layout-gutter: 12px;
+    --layout-top: 12px;
+    --space-5: 20px;
+    --space-6: 26px;
+    --space-7: 34px;
+    --card-pad: 18px;
+  }
+  html { scroll-padding-top: calc(76px + env(safe-area-inset-top)); }
+  .app-topbar { padding: env(safe-area-inset-top) 0 0; }
+  .app-topbar-inner { width: 100%; height: 62px; padding: 7px 12px; border-width: 0 0 1px; border-radius: 0; grid-template-columns: 44px minmax(0, 1fr) 44px; }
+  .app-tabbar-inner { height: 70px; border-radius: 23px; }
+  .app-tabbar a, .app-tabbar button { min-height: 54px; border-radius: 17px; }
+  main, .home-main, .attractions-main, .forecast-page, .shows-main,
+  .weather-detail-main, .services-main, .ride-detail-main, .data-info-page,
+  .park-day-main, .park-map-main { width: calc(100% - 2 * var(--layout-gutter)); padding-top: var(--layout-top); }
+  .home-main { gap: var(--space-3); }
+  .home-main > .welcome-hero { height: auto; min-height: 440px; }
+  .home-main > .weather-card-v2 { height: 490px; min-height: 490px; }
+  .home-main > .attractions-card.attractions-card { height: auto; min-height: 440px; }
+  .home-main > .weather-card-v2 .weather-stage { padding: 20px 18px 104px; }
+  .home-main .weather-open-details { right: 12px !important; bottom: 12px !important; left: 12px !important; }
+  .welcome-hero, .weather-card-v2, .attractions-card.attractions-card,
+  .shows-hero, .services-hero, .forecast-hero, .weather-detail-hero,
+  .ride-detail-hero, .attractions-page-intro, .data-info-hero,
+  .park-day-intro, .park-map-intro { border-radius: 20px !important; }
+  .shows-hero, .services-hero, .forecast-hero { min-height: 300px; }
+  .attractions-list, .services-grid, .forecast-list, .programme-list,
+  .show-alert-grid, .source-matrix, .data-info-cards { gap: var(--space-3); }
+  .ride-current, .day-summary-grid, .accuracy-overview,
+  .weather-details-grid, .park-day-overview { grid-template-columns: 1fr; }
+  .ride-current > div:last-child { grid-column: auto; }
+  .section-title-row, .detail-section-head { align-items: flex-start; }
+  .park-day-actions { display: grid; grid-template-columns: 1fr; }
+  .park-day-actions a, .park-day-actions button { width: 100%; justify-content: center; }
+  .more-menu-backdrop, .weather-modal-backdrop, .sync-modal-backdrop { padding: env(safe-area-inset-top) 0 0; place-items: end center; }
+  .more-menu-sheet, .weather-modal-panel, .sync-modal { width: 100%; max-height: calc(94dvh - env(safe-area-inset-top)); padding: var(--space-3) 16px max(22px, env(safe-area-inset-bottom)); border-radius: 24px 24px 0 0; }
+  .site-footer { margin-top: 0; padding-inline: var(--space-2); }
+}
+
+@media (max-width: 390px) {
+  :root { --layout-gutter: 10px; --card-pad: 16px; }
+  .app-tabbar { padding-inline: 8px; }
+  .app-tabbar-inner { height: 68px; padding: 6px; }
+  .app-tabbar a, .app-tabbar button { font-size: 9px; gap: 2px; }
+  .app-tabbar svg { width: 22px; height: 22px; }
+  .home-main > .welcome-hero { min-height: 420px; }
+  .home-main > .weather-card-v2 { height: 475px; min-height: 475px; }
+  .attractions-page-summary.attractions-page-summary { grid-template-columns: 1fr; }
+  .section-title-row { flex-direction: column; }
+  .feature-placeholders > a, .feature-placeholders > article { padding: 16px; gap: 12px; }
+}

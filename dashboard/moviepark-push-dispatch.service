@@ -1,0 +1,13 @@
+[Unit]
+Description=Movie Park dashboard push alert dispatcher
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/moviepark/dashboard
+ExecStart=/root/.nvm/versions/node/v26.5.0/bin/node /opt/moviepark/dashboard/scripts/push-dispatch.mjs
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/moviepark/dashboard/.runtime
+ReadOnlyPaths=/opt/moviepark/app/data

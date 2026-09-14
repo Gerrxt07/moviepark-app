@@ -1,0 +1,30 @@
+.ride-recommendation-history { margin-top: 18px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fff; box-shadow: var(--shadow-sm); }
+.ride-tabs.has-four { grid-template-columns: repeat(4,minmax(0,1fr)); }
+.ride-recommendation-history.is-subview { padding: 20px 0 0; border: 0; border-top: 1px solid var(--line); border-radius: 0; box-shadow: none; }
+.ride-recommendation-history > header h2 { margin: 3px 0 7px; font-size: clamp(24px,4vw,34px); }
+.ride-recommendation-history > header p:last-child { max-width: 700px; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.55; }
+.recommendation-history-group { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+.recommendation-history-group > div:first-child { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.recommendation-history-group h3 { margin: 0; font-size: 16px; }
+.recommendation-history-group > div:first-child > span { padding: 5px 7px; border-radius: 999px; color: var(--muted); background: var(--surface-soft); font-size: 8px; font-weight: 800; }
+.recommendation-history-list { margin-top: 10px; display: grid; gap: 8px; }
+.recommendation-history-list article { min-height: 86px; padding: 13px; border: 1px solid var(--line); border-radius: 13px; display: grid; grid-template-columns: minmax(180px,1fr) minmax(115px,.55fr) minmax(130px,.65fr); align-items: center; gap: 12px; background: #fff; }
+.recommendation-history-list article.is-pending { border-style: dashed; background: #fafbf9; }
+.recommendation-history-list article > div,.recommendation-history-list article > span { min-width: 0; display: grid; gap: 3px; }
+.recommendation-history-list article > span { padding-left: 12px; border-left: 1px solid var(--line); }
+.recommendation-history-list time { font-size: 12px; font-weight: 850; }
+.recommendation-next-badge { width: fit-content; margin: 0 0 5px; padding: 4px 6px; border-radius: 7px; display: block; color: #fff; background: var(--green); font-size: 7px; letter-spacing: .06em; text-transform: uppercase; }
+.recommendation-history-list small { color: var(--muted); font-size: 8px; line-height: 1.35; }
+.recommendation-history-list strong { font-size: 15px; }
+.recommendation-history-list em { color: var(--muted); font-size: 8px; font-style: normal; }
+.recommendation-history-list em.is-higher { color: #a3423c; }
+.recommendation-history-list em.is-lower { color: var(--green-dark); }
+
+@media (max-width:760px) {
+  .ride-recommendation-history { padding: 18px 14px; border-radius: 16px; }
+  .recommendation-history-list article { grid-template-columns: 1fr 1fr; }
+  .recommendation-history-list article > div { grid-column: 1/-1; padding-bottom: 9px; border-bottom: 1px solid var(--line); }
+  .recommendation-history-list article > span { padding-left: 0; border-left: 0; }
+  .recommendation-history-list article > span + span { padding-left: 10px; border-left: 1px solid var(--line); }
+  .ride-tabs.has-four button { padding-inline: 3px; font-size: 8px; }
+}

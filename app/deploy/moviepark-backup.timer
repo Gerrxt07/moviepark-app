@@ -1,0 +1,11 @@
+[Unit]
+Description=Back up Movie Park database daily
+
+[Timer]
+OnCalendar=*-*-* 20:00:00 Europe/Berlin
+Persistent=true
+AccuracySec=5min
+Unit=moviepark-backup.service
+
+[Install]
+WantedBy=timers.target

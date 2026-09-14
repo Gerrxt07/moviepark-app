@@ -1,0 +1,17 @@
+[Unit]
+Description=Movie Park autonomous seven-day forecast
+After=network-online.target moviepark-collector.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=moviepark
+Group=moviepark
+WorkingDirectory=/opt/moviepark/app
+EnvironmentFile=-/etc/moviepark/collector.env
+ExecStart=/opt/moviepark/venv/bin/python -u /opt/moviepark/app/forecast_engine.py --database /opt/moviepark/app/data/moviepark.sqlite
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/moviepark/app/data

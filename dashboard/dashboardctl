@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+SERVICE="moviepark-dashboard.service"
+APP_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
+usage() { echo "Usage: ./dashboardctl {start|stop|restart|status|logs|build}"; }
+
+case "${1:-}" in
+  start)
+    systemctl start "${SERVICE}"
+    systemctl --no-pager --full status "${SERVICE}"
+    ;;
+  stop)
+    systemctl stop "${SERVICE}"
+    echo "Dashboard stopped."
+    ;;
+  restart)
+    systemctl restart "${SERVICE}"
+    systemctl --no-pager --full status "${SERVICE}"
+    ;;
+  status)
+    systemctl --no-pager --full status "${SERVICE}"
+    ;;
+  logs)
+    journalctl -u "${SERVICE}" -n 100 -f
+    ;;
+  build)
+    cd "${APP_DIR}"
+    [[ -d node_modules ]] || npm ci
+    npm run build
+    ;;
+  *)
+    usage
+    exit 2
+    ;;
+esac

@@ -1,0 +1,3 @@
+import { DatabaseSync } from "node:sqlite";
+export const runtime="nodejs";export const dynamic="force-dynamic";
+export async function GET(){const db=new DatabaseSync("/opt/moviepark/app/data/moviepark.sqlite",{readOnly:true});try{const components=db.prepare("SELECT component,checked_at AS checkedAt,status,message FROM data_health ORDER BY component").all();const run=db.prepare("SELECT run_id AS runId,generated_at AS generatedAt,model_version AS modelVersion,status FROM forecast_runs WHERE promoted=1 ORDER BY generated_at DESC LIMIT 1").get();const healthy=run&&components.every(c=>c.status==="ok");return Response.json({status:healthy?"ok":"degraded",run,components},{status:healthy?200:207,headers:{"Cache-Control":"no-store"}})}finally{db.close()}}

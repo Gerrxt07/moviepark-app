@@ -1,0 +1,12 @@
+[Unit]
+Description=Refresh Movie Park forecast throughout the day
+
+[Timer]
+OnBootSec=2min
+OnCalendar=*-*-* 06..22:02/15:00 Europe/Berlin
+Persistent=true
+AccuracySec=1min
+Unit=moviepark-forecast.service
+
+[Install]
+WantedBy=timers.target

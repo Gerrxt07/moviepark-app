@@ -1,0 +1,15 @@
+[Unit]
+Description=Movie Park forecast challenger training and validation
+After=moviepark-features.service
+
+[Service]
+Type=oneshot
+User=moviepark
+Group=moviepark
+WorkingDirectory=/opt/moviepark/app
+ExecStart=/opt/moviepark/venv/bin/python -u /opt/moviepark/app/model_trainer.py --database /opt/moviepark/app/data/moviepark.sqlite --models /opt/moviepark/app/data/models
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/moviepark/app/data

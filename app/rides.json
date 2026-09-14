@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "park_id": 310,
+  "generated_from": "2026-07-26 collected ride list",
+  "rides": {
+    "10981": {
+      "name": "Area 51 - Top Secret",
+      "category": "water_ride",
+      "indoor": false,
+      "water": true,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "10996": {
+      "name": "Avatar Air Glider",
+      "category": "flat_ride",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "11002": {
+      "name": "Backyardigans Mission to Mars",
+      "category": "family_ride",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "11007": {
+      "name": "Crazy Surfer",
+      "category": "flat_ride",
+      "indoor": false,
+      "water": false,
+      "family": false,
+      "thrill": true,
+      "weather_sensitive": true
+    },
+    "10995": {
+      "name": "Dora’s Big River Adventure",
+      "category": "water_ride",
+      "indoor": false,
+      "water": true,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "10985": {
+      "name": "Excalibur - Secrets of the Dark Forest",
+      "category": "water_ride",
+      "indoor": false,
+      "water": true,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "10992": {
+      "name": "Fairy World Spin",
+      "category": "family_ride",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "10997": {
+      "name": "Ghost Chasers",
+      "category": "roller_coaster",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "10982": {
+      "name": "Iron Claw",
+      "category": "flat_ride",
+      "indoor": false,
+      "water": false,
+      "family": false,
+      "thrill": true,
+      "weather_sensitive": true
+    },
+    "11001": {
+      "name": "Jimmy Neutron Atomic Flyer",
+      "category": "roller_coaster",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "16233": {
+      "name": "Journey to the Forbidden Chamber",
+      "category": "dark_ride",
+      "indoor": true,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": false
+    },
+    "10993": {
+      "name": "Movie Park Studio Tour",
+      "category": "roller_coaster",
+      "indoor": true,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": false
+    },
+    "10999": {
+      "name": "NYC Transformer",
+      "category": "flat_ride",
+      "indoor": false,
+      "water": false,
+      "family": false,
+      "thrill": true,
+      "weather_sensitive": true
+    },
+    "10994": {
+      "name": "PAW Patrol Adventure Tour",
+      "category": "family_ride",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "10988": {
+      "name": "Pier Side Carousel",
+      "category": "family_ride",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "11006": {
+      "name": "Rescue 112",
+      "category": "family_ride",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "10998": {
+      "name": "Santa Monica Wheel",
+      "category": "observation_ride",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "11008": {
+      "name": "Sea Swing",
+      "category": "flat_ride",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "11004": {
+      "name": "Side-Kick",
+      "category": "flat_ride",
+      "indoor": false,
+      "water": false,
+      "family": false,
+      "thrill": true,
+      "weather_sensitive": true
+    },
+    "10991": {
+      "name": "Skye's High Flyer",
+      "category": "family_ride",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "11005": {
+      "name": "Splat-O-Sphere",
+      "category": "flat_ride",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "10983": {
+      "name": "SpongeBob Splash Bash",
+      "category": "water_ride",
+      "indoor": false,
+      "water": true,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "10984": {
+      "name": "Star Trek: Operation Enterprise",
+      "category": "roller_coaster",
+      "indoor": false,
+      "water": false,
+      "family": false,
+      "thrill": true,
+      "weather_sensitive": true
+    },
+    "11011": {
+      "name": "Stormy Cruise",
+      "category": "family_ride",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "11010": {
+      "name": "Teenage Mutant Ninja Turtles: License to Drive",
+      "category": "family_ride",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    },
+    "10987": {
+      "name": "The Bandit",
+      "category": "roller_coaster",
+      "indoor": false,
+      "water": false,
+      "family": false,
+      "thrill": true,
+      "weather_sensitive": true
+    },
+    "10989": {
+      "name": "The High Fall",
+      "category": "drop_tower",
+      "indoor": false,
+      "water": false,
+      "family": false,
+      "thrill": true,
+      "weather_sensitive": true
+    },
+    "11009": {
+      "name": "Time Riders",
+      "category": "simulator",
+      "indoor": true,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": false
+    },
+    "11000": {
+      "name": "Van Helsing’s Factory",
+      "category": "roller_coaster",
+      "indoor": true,
+      "water": false,
+      "family": false,
+      "thrill": true,
+      "weather_sensitive": false
+    },
+    "10990": {
+      "name": "Zuma's Zoomers",
+      "category": "family_ride",
+      "indoor": false,
+      "water": false,
+      "family": true,
+      "thrill": false,
+      "weather_sensitive": true
+    }
+  }
+}

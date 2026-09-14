@@ -1,0 +1,14 @@
+[Unit]
+Description=Movie Park SQLite verified backup
+
+[Service]
+Type=oneshot
+User=moviepark
+Group=moviepark
+WorkingDirectory=/opt/moviepark/app
+ExecStart=/opt/moviepark/venv/bin/python -u /opt/moviepark/app/backup_database.py --database /opt/moviepark/app/data/moviepark.sqlite --output /opt/moviepark/app/data/backups --keep-days 14
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/moviepark/app/data

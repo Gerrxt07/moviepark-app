@@ -1,0 +1,31 @@
+# Python virtualenv / caches
+/venv/
+/tls/
+__pycache__/
+*.py[cod]
+/.cache/
+
+# Application data (databases, raw/processed data, model artifacts, backups)
+/app/data/
+/backups/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+
+# Node / Next.js dashboard build artifacts and deps
+dashboard/node_modules/
+dashboard/.next/
+dashboard/.open-next/
+dashboard/.runtime/
+dashboard/dist/
+*.tgz
+
+# TLS / secrets
+cert.key
+cert.pem
+*.pem
+*.key
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db

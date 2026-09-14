@@ -1,0 +1,27 @@
+.legal-content { max-width:920px; margin:0 auto; padding:18px 0 110px; color:var(--ink); }
+.legal-content > header { padding:28px; border:1px solid var(--line); border-radius:22px; background:var(--surface,#fff); }
+.legal-content h1 { margin:5px 0 12px; font-size:clamp(38px,7vw,66px); line-height:.95; letter-spacing:-.05em; }
+.legal-content > header > p:last-child { max-width:680px; color:var(--muted); font-size:12px; line-height:1.6; }
+.legal-content > nav { margin:12px 0 4px; display:flex; gap:7px; overflow-x:auto; scrollbar-width:none; }
+.legal-content > nav a { min-height:40px; padding:0 12px; border:1px solid var(--line); border-radius:11px; display:flex; align-items:center; color:inherit; background:var(--surface,#fff); font-size:9px; font-weight:800; text-decoration:none; white-space:nowrap; }
+.legal-content > section { margin-top:12px; padding:24px; border:1px solid var(--line); border-radius:20px; background:var(--surface,#fff); scroll-margin-top:90px; }
+.legal-content h2 { margin:4px 0 15px; font-size:25px; }
+.legal-content h3 { margin:20px 0 6px; font-size:14px; }
+.legal-content p, .legal-content address, .legal-content dd { color:var(--muted); font-size:10px; line-height:1.65; }
+.legal-content address { margin:16px 0; font-style:normal; }
+.legal-content a { color:var(--green-dark,var(--green)); text-underline-offset:2px; }
+.legal-content dl { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+.legal-content dl > div { padding:13px; border:1px solid var(--line); border-radius:12px; }
+.legal-content dt { font-size:9px; font-weight:850; }
+.legal-content dd { margin:5px 0 0; }
+.legal-warning { margin-top:14px; padding:14px; border:1px solid #e2bd66; border-radius:13px; background:#fff5d8; }
+.legal-warning strong { color:#6b4800; font-size:11px; }
+.legal-warning p { margin:5px 0 0; color:#765f2d; }
+.legal-content > footer { margin-top:14px; padding:14px; display:flex; justify-content:space-between; gap:15px; color:var(--muted); font-size:8px; }
+.legal-content > footer a { color:inherit; font-weight:850; }
+
+@media (max-width:650px) {
+  .legal-content > header, .legal-content > section { padding:18px; border-radius:17px; }
+  .legal-content dl { grid-template-columns:1fr; }
+  .legal-content > footer { flex-direction:column; }
+}

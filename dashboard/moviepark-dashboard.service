@@ -1,0 +1,21 @@
+[Unit]
+Description=Movie Park Germany local dashboard
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/moviepark/dashboard
+Environment=NODE_ENV=production
+Environment=PATH=/root/.nvm/versions/node/v26.5.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+ExecStartPre=/root/.nvm/versions/node/v26.5.0/bin/npm run build
+ExecStart=/root/.nvm/versions/node/v26.5.0/bin/npm run start -- --hostname 127.0.0.1 --port 3000
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+KillMode=mixed
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

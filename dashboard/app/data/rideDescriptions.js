@@ -1,0 +1,36 @@
+export const RIDE_DESCRIPTIONS = {
+  10981:"Eine geheimnisvolle Wasserfahrt führt durch das abgesperrte Areal von Area 51.",
+  10983:"Interaktive Wasseraction mit SpongeBob und seinen Freunden.",
+  10989:"Der große Freifallturm bietet Nervenkitzel und einen weiten Blick über den Park.",
+  10992:"Eine familienfreundliche Drehfahrt durch eine farbenfrohe Märchenwelt.",
+  10995:"Eine spritzige Familien-Wasserfahrt mit Dora und ihren Freunden.",
+  10996:"Eine luftige Familienfahrt, bei der die Gondeln hoch über Nickelodeon LAND kreisen.",
+  11001:"Ein familienfreundlicher Suspended Coaster mit rasanten Kurven über Nickelodeon LAND.",
+  11002:"Eine turbulente Weltraummission für Familien und junge Filmstars.",
+  11005:"Eine interaktive Rundfahrt mit frei steuerbarer Flughöhe.",
+  10982:"Eine intensive Überschlagsfahrt für Fans klassischer Thrill-Rides.",
+  10984:"Deutschlands erster Triple-Launch-Coaster beschleunigt mehrfach in eine actionreiche Mission.",
+  10985:"Eine abenteuerliche Wasserfahrt durch den geheimnisvollen Dark Forest.",
+  10987:"Die große Holzachterbahn verbindet klassische Airtime mit einer wilden Fahrt durch den Old West.",
+  10997:"Eine kompakte Familienachterbahn mit engen Kurven und überraschenden Richtungswechseln.",
+  10999:"Eine intensive Überkopffahrt mitten im New Yorker Themenbereich.",
+  11000:"Eine düstere Indoor-Achterbahn durch Van Helsings Monsterwerkstatt.",
+  11004:"Eine große Schaukel mit immer höheren Ausflügen in Richtung Himmel.",
+  11007:"Eine drehende Thrill-Fahrt auf einer wellenförmigen Schiene.",
+  16233:"Eine familienfreundliche Indoor-Reise in eine geheimnisvolle verbotene Kammer.",
+  10993:"Eine abwechslungsreiche Familienachterbahn durch Filmsets und Studiokulissen.",
+  10994:"Eine interaktive Rundfahrt durch Adventure Bay für kleine PAW-Patrol-Fans.",
+  10988:"Ein klassisches Karussell im maritimen Ambiente des Santa Monica Pier.",
+  11006:"Eine interaktive Einsatzfahrt für junge Feuerwehr-Fans.",
+  10998:"Das Riesenrad bietet eine ruhige Fahrt mit Aussicht über den Park.",
+  11008:"Eine klassische Wellenflugfahrt am Santa Monica Pier.",
+  10990:"Eine rasante Rundfahrt mit Zuma und seinen Freunden.",
+  10991:"Eine familienfreundliche Flugfahrt mit Skye hoch über Adventure Bay.",
+  11011:"Eine stürmische Familienfahrt mit drehenden Booten.",
+  11010:"Kinder steuern ihr eigenes Fahrzeug durch einen kleinen Straßenparcours.",
+  11009:"Ein Indoor-Simulator nimmt Gäste mit auf eine turbulente Reise durch die Zeit.",
+};
+
+export function rideDescription(ride) {
+  return RIDE_DESCRIPTIONS[ride?.id] || `Eine ${ride?.family ? "familienfreundliche" : ride?.thrill ? "actionreiche" : "abwechslungsreiche"} Attraktion im Movie Park Germany.`;
+}

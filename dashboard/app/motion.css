@@ -1,0 +1,40 @@
+/* Shared motion language: quick, functional and safe for installed PWAs. */
+@keyframes app-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes app-pop { 0% { opacity: 0; transform: translateY(10px) scale(.82); } 70% { transform: translateY(-3px) scale(1.04); } 100% { opacity: 1; transform: none; } }
+@keyframes app-soft-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(8,115,84,.25); } 50% { box-shadow: 0 0 0 6px rgba(8,115,84,0); } }
+@keyframes app-shimmer { from { transform: translateX(-130%) skewX(-18deg); } to { transform: translateX(330%) skewX(-18deg); } }
+
+.app-tabbar-inner { transition: width .32s cubic-bezier(.2,.8,.2,1), grid-template-columns .32s ease; }
+.app-tabbar-inner.has-parkday { width: min(590px,100%); grid-template-columns: repeat(5,minmax(0,1fr)); overflow: visible; }
+.app-tabbar a,.app-tabbar button,.app-back,.checkin-button,.status-filter button,.ride-tabs button,.satellite-attraction-filters button { transition: color .18s ease, background-color .18s ease, border-color .18s ease, transform .16s ease, box-shadow .22s ease; }
+.app-tabbar a:active,.app-tabbar button:active,.app-back:active,.checkin-button:active,.status-filter button:active,.ride-tabs button:active,.satellite-attraction-filters button:active { transform: scale(.92); }
+.app-tabbar .app-parkday-tab { position: relative; align-self: end; height: 70px; min-height: 70px; margin-top: -14px; border: 4px solid var(--page); border-radius: 22px; color: #fff; background: linear-gradient(145deg,var(--green),var(--green-dark)); box-shadow: 0 10px 24px rgba(7,84,62,.28); animation: app-pop .48s cubic-bezier(.2,.8,.2,1) both; }
+.app-tabbar .app-parkday-tab.is-active { color: #18301f; background: var(--signal); box-shadow: 0 10px 26px rgba(8,115,84,.25); }
+.app-parkday-live { position: absolute!important; top: 8px; right: calc(50% - 16px); width: 7px; height: 7px; border: 2px solid #fff; border-radius: 50%; background: #70efa8; animation: app-soft-pulse 2s ease-in-out infinite; }
+
+.home-main > *,.shows-main > *,.attractions-main > *,.services-main > *,.weather-detail-main > *,.ride-detail-main > *,.forecast-page > *,.park-day-main > *,.park-map-main > * { animation: app-rise .42s cubic-bezier(.2,.75,.25,1) both; }
+.home-main > :nth-child(2),.shows-main > :nth-child(2),.attractions-main > :nth-child(2),.ride-detail-main > :nth-child(2),.forecast-page > :nth-child(2),.park-day-main > :nth-child(2) { animation-delay: .05s; }
+.home-main > :nth-child(3),.shows-main > :nth-child(3),.attractions-main > :nth-child(3),.ride-detail-main > :nth-child(3),.forecast-page > :nth-child(3),.park-day-main > :nth-child(3) { animation-delay: .1s; }
+.ride-card,.programme-card,.services-grid article,.forecast-day-list article,.forecast-ride-list > article,.show-alert-card,.feature-placeholders > * { transition: transform .22s cubic-bezier(.2,.75,.25,1), box-shadow .22s ease, border-color .2s ease; }
+.ride-card:active,.programme-card:active,.services-grid article:active,.forecast-day-list article:active,.forecast-ride-list > article:active,.show-alert-card:active,.feature-placeholders > *:active { transform: scale(.985); }
+.park-checkin.is-active,.personalized-park-suggestion { position: relative; overflow: hidden; }
+.park-checkin.is-active::after,.personalized-park-suggestion::after { content: ""; position: absolute; inset: 0 auto 0 -30%; width: 24%; pointer-events: none; background: linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent); animation: app-shimmer 5.5s ease-in-out infinite; }
+.ride-status.is-open,.attractions-live-dot,.checkin-live-dot { animation: app-soft-pulse 2.4s ease-in-out infinite; }
+.forecast-method summary b,.ride-data-details summary b { transition: transform .22s ease; }
+
+@media (hover:hover) and (pointer:fine) {
+  .ride-card:hover,.programme-card:hover,.services-grid article:hover,.forecast-day-list article:hover,.forecast-ride-list > article:hover,.show-alert-card:hover,.feature-placeholders > *:hover { transform: translateY(-3px); border-color: #b9cbc1; box-shadow: 0 12px 28px rgba(20,45,36,.1); }
+  .app-tabbar a:hover,.app-tabbar button:hover { transform: translateY(-2px); }
+  .app-tabbar .app-parkday-tab:hover { transform: translateY(-4px) scale(1.025); }
+}
+
+@media (min-width:1100px) { .app-tabbar-inner.has-parkday { width: 480px; } }
+@media (max-width:420px) {
+  .app-tabbar-inner.has-parkday { padding-inline: 3px; }
+  .app-tabbar-inner.has-parkday a,.app-tabbar-inner.has-parkday button { font-size: 8px; }
+  .app-tabbar .app-parkday-tab { height: 66px; min-height: 66px; margin-top: -12px; border-width: 3px; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { scroll-behavior: auto!important; animation-duration: .01ms!important; animation-iteration-count: 1!important; transition-duration: .01ms!important; }
+}

@@ -1,0 +1,25 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { AppHeader, AppNav } from "./AppChrome";
+import { readForecastMode } from "../lib/forecastMode";
+import ForecastModeNotice from "./ForecastModeNotice";
+import ForecastSourcePanel from "./ForecastSourcePanel";
+import { localeCode } from "../lib/locale";
+
+const dateLabel=date=>new Intl.DateTimeFormat(localeCode(),{weekday:"long",day:"2-digit",month:"long"}).format(new Date(`${date}T12:00:00Z`));
+const reliability=value=>({high:"Gut historisch gestützt",medium:"Mittlere Datengrundlage",low:"Frühe Einschätzung"}[value]||"Noch offen");
+const weatherSummary=weather=>weather?`${weather.currentCondition||weather.condition||"Wetter"} · ${Number.isFinite(weather.currentTemperature)?`jetzt ${Math.round(weather.currentTemperature)}° · `:""}${Number.isFinite(weather.temperatureMin)&&Number.isFinite(weather.temperatureMax)?`${Math.round(weather.temperatureMin)}–${Math.round(weather.temperatureMax)}°`:"Temperatur nicht verfügbar"}${Number.isFinite(weather.precipitationProbability)?` · ${Math.round(weather.precipitationProbability)}% Regen`:""}`:"Wetterdaten nicht verfügbar";
+
+export default function ForecastRidesPage({date}){
+  const[data,setData]=useState(null),[error,setError]=useState(""),[mode,setMode]=useState(null);
+  useEffect(()=>setMode(readForecastMode()),[]);
+  useEffect(()=>{if(!mode)return;fetch(`/api/forecast?date=${encodeURIComponent(date)}&mode=${mode}`,{cache:"no-store"}).then(async response=>{const payload=await response.json();if(!response.ok)throw new Error(payload.error);setData(payload)}).catch(reason=>setError(reason.message))},[date,mode]);
+  const day=data?.days?.find(item=>item.date===date);
+  return <div className="forecast-app"><AppHeader backHref="/forecast" title="Ride-Zeiten"/><main className="forecast-page forecast-rides-page"><header className="forecast-rides-intro"><p className="eyebrow">{dateLabel(date)}</p><h1>{day?.isOpen?"Voraussichtlich gute Uhrzeiten":"An diesem Tag geschlossen"}</h1><p>{day?.isOpen?`Der Park ist von ${day.opensAt} bis ${day.closesAt} Uhr geöffnet. Attraktionen mit der voraussichtlich kürzesten Wartezeit stehen zuerst.`:"Für einen geschlossenen Parktag werden keine Ride-Zeiten berechnet."}</p></header>
+    {data?<ForecastModeNotice mode={data.mode} fallback={data.requestedMode==="experimental"&&data.mode!=="experimental"} compact/>:null}
+    {day?.weather?<section className="forecast-weather-detail"><div><p className="eyebrow">Aktuelles Wetterbild</p><h2>{weatherSummary(day.weather)}</h2><small>Datenstand {day.weather.updatedAt?new Date(day.weather.updatedAt).toLocaleString(localeCode(),{timeZone:"Europe/Berlin"}):"nicht verfügbar"}</small></div><div className="forecast-weather-hours">{(day.weather.hourly||[]).filter(hour=>{const time=hour.time.slice(11,16);return !day.opensAt||!day.closesAt||(time>=day.opensAt&&time<=day.closesAt)}).filter((_,index)=>index%2===0).map(hour=><article key={hour.time}><time>{hour.time.slice(11,16)}</time><strong>{Number.isFinite(hour.temperature_2m)?`${Math.round(hour.temperature_2m)}°`:"—"}</strong><small>{hour.precipitation_probability??0}% Regen</small></article>)}</div></section>:null}
+    {error?<p className="forecast-error">{error}</p>:!data?<p className="forecast-loading-inline">Ride-Zeiten werden geladen …</p>:<><section className="forecast-confidence-note"><strong>{data.quality?.trainingDays||0} geöffnete Vergleichstage · {data.mode==="experimental"?"Hybrid-Prognose":"Standardprognose"}</strong><p>Alle angezeigten Uhrzeiten stammen aus der dauerhaft aktiven Hybrid-Prognose. Jede Uhrzeit bleibt eine Schätzung.</p><Link href="/data-info#sicherheit">Bewertung verstehen</Link></section><section className={`forecast-ride-list${data.mode==="experimental"?" is-experimental":""}`} aria-label="Prognosen nach Attraktion">{data.rides?.map(ride=><article key={ride.id}><Link href={`/attractions/${ride.id}`}><div><strong>{ride.name}</strong><small>{reliability(ride.confidence)} · an {ride.operatingReliability??"—"}% der letzten Messpunkte geöffnet</small></div><span><b>{ride.best?.time||"—"}</b><small>{ride.best?`voraussichtlich ${Math.round(ride.best.p50)} Min.`:"Heute keine kommende Empfehlung"}</small></span></Link><details><summary>Warum diese Uhrzeit?</summary><p>Für den Tag werden durchschnittlich etwa {Math.round(ride.averageWait)} Minuten erwartet. Zur empfohlenen Uhrzeit sind ungefähr {ride.best?`${Math.round(ride.best.p10)} bis ${Math.round(ride.best.p90)} Minuten möglich`:"keine Werte verfügbar"}. {ride.best?.supportDays?`Grundlage sind ${ride.best.supportDays} ähnliche Parktage mit ${ride.best.supportSamples} Messungen.`:"Die Datengrundlage ist noch klein."} {ride.measuredComparisons?`Frühere Prognosen lagen im Mittel ${ride.measuredMae} Minuten daneben.`:"Für diese Attraktion gibt es noch nicht genug abgeschlossene Vergleiche."}</p></details></article>)}</section><ForecastSourcePanel pipeline={data.pipeline} compact/></>}
+  </main><AppNav active="more"/></div>;
+}

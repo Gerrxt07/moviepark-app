@@ -1,0 +1,24 @@
+{
+  "name": "movie-park-germany-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "build:hosting": "opennextjs-cloudflare build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "jsqr": "^1.4.0",
+    "leaflet": "^1.9.4",
+    "next": "^15.4.4",
+    "qrcode": "^1.5.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "web-push": "^3.6.7"
+  },
+  "devDependencies": {
+    "@opennextjs/cloudflare": "^1.6.5",
+    "typescript": "^5.8.2"
+  }
+}

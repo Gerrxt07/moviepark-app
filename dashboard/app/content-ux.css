@@ -1,0 +1,7 @@
+.forecast-mode-control span > a { width:max-content; color:#376653; font-size:8px; font-weight:850; text-underline-offset:2px; }
+.forecast-mode-banner > div > a { width:max-content; margin-top:2px; color:#376653; font-size:8px; font-weight:850; text-underline-offset:2px; }
+.forecast-mode-banner.is-experimental > div > a { color:#176cc3; }
+.forecast-confidence-note > a { display:inline-flex; margin-top:6px; color:inherit; font-size:9px; font-weight:850; text-underline-offset:2px; }
+.forecast-quality-dashboard > small a { color:inherit; font-weight:850; text-underline-offset:2px; }
+.forecast-method > div > a { display:inline-flex; margin-top:8px; color:var(--green-dark); font-size:9px; font-weight:850; }
+@media(max-width:650px){.forecast-mode-banner{grid-template-columns:auto minmax(0,1fr) auto}.forecast-mode-banner small{font-size:9px;line-height:1.5}}

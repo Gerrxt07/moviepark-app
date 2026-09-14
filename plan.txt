@@ -1,0 +1,115 @@
+# Movie Park Dashboard Feature Roadmap
+#
+# Progress: [ ] planned, [-] in progress, [x] completed, [!] blocked.
+# Completed items retain implementation, test, and deployment notes below them.
+
+## Phase 1 — Small live-utility features
+
+[x] 1. Wait-time movement
+Compare the latest valid wait with the previous snapshot and an approximately
+30-minute-old snapshot. Return direction/delta from the attractions API and show
+compact, accessible trend badges. Suppress misleading comparisons for stale,
+closed, missing, or invalid observations.
+
+[x] 2. Favorite ride alerts
+Allow checked-in push subscribers to opt into favorite reopening alerts and
+wait-below thresholds of 5, 10, 15, 20, or 30 minutes. Store preferences per
+push endpoint, dispatch from fresh ride data, deduplicate for 30 minutes, and
+remove expired push endpoints.
+
+[x] 3. Show reminders
+Allow reminders for individual future show occurrences, delivered 15 minutes
+before start only while checked in. Persist per push endpoint and deduplicate by
+date/show/time.
+
+[x] 4. Quick service finder
+Add a searchable /services page for first aid, toilets, accessible toilets,
+guest service, ATMs, lockers, restaurants, Baby Switch, and the main entrance.
+Store reviewed local data with source/update metadata and map-ready coordinates.
+
+[!] 5. Ride suitability filters
+Add minimum height/age, family/thrill, indoor/outdoor, water, accessibility,
+weather sensitivity, and Baby Switch metadata. Add filters and a non-persistent
+child-height input, with an official-information disclaimer.
+
+[x] 6. Weather-aware suggestions
+Recommend fresh, open indoor/show options in rain; water/shade/hydration options
+in heat; less weather-sensitive options in wind; and low-wait favorites during
+normal conditions. Label all suggestions as unofficial.
+
+[x] 7. Completed-today tracking
+Allow rides to be marked completed, stored locally by Europe/Berlin operating
+date, automatically reset next day, independently of favorites and sync.
+
+[x] 8. Offline last-known overview
+Cache successful attraction, weather, show, and service data. Clearly label
+offline/stale content and disable live-only actions. Version the service-worker
+cache safely so installed iOS apps receive new code.
+
+## Phase 2 — Ride history and predictions
+
+[x] Add ride details with current status, today’s observed curve, predictions
+for the rest of today and tomorrow, uncertainty bounds, best upcoming time,
+support counts, and an experimental warning. Add an insights API and retain
+closures/invalid data as gaps. Evaluate a stronger model after 14 complete days.
+
+## Phase 2 implementation notes — 2026-07-30
+
+# DONE: Every attraction card links to a mobile-first detail page with its photo,
+# a concise ride description, current status/wait time, and data freshness.
+#
+# DONE: Added a read-only insights API backed by the collector database. It
+# returns today's valid observations plus median 30-minute predictions for today
+# and tomorrow, 25th–75th percentile uncertainty, support counts, and the best
+# upcoming predicted time. Closed and invalid observations are excluded as gaps.
+#
+# DONE: Predictions prefer the same weekday, then the same weekday/weekend class,
+# then all prior days. The UI labels the model experimental while history is
+# limited; evaluate a stronger model after at least 14 complete operating days.
+#
+# DONE: Production build passed, the dashboard service was restarted, and the
+# attractions list, ride detail page, and insights API returned healthy responses.
+
+## Phase 3 — GPS OpenStreetMap park plan
+
+[ ] Add a MapLibre /map page using a self-hosted OSM-derived PMTiles extract,
+reviewed POIs, live on-device position, accuracy/heading, status markers,
+search/filtering, favorites, centering, and straight-line distance. Do not add
+walking routes in v1 and never transmit or persist GPS coordinates.
+
+## Phase 1 acceptance
+
+[x] Production build passes.
+[ ] iOS Safari/Home Screen, Android Chrome/PWA, and desktop behavior covered.
+[x] Existing favorites, pairing, check-in, push, shows, and weather remain valid.
+[x] Cached content is never presented as live.
+[x] Service restarted successfully and affected routes return healthy responses.
+
+## Phase 1 implementation notes — 2026-07-30
+
+# DONE: The attractions API returns previous and approximately 30-minute wait
+# comparisons. The UI shows trend badges only for fresh, valid, open rides.
+#
+# DONE: Push preferences now include favorite threshold alerts, reopen alerts,
+# and 15-minute show reminders. A restricted one-minute systemd dispatcher
+# checks only active check-ins, stores deduplication keys, and removes expired
+# subscriptions. Its manual test exited successfully and its timer is active.
+#
+# DONE: Added /services, reviewed service/source data, responsive cards, and a
+# More-menu entry. Exact POI coordinates remain deferred to the Phase 3 survey.
+#
+# PARTIAL/BLOCKED: Indoor, family, thrill, and water suitability filters are
+# live. Minimum height/age, accessibility, and Baby Switch per ride require a
+# reviewed import of official safety data; they were not guessed or invented.
+#
+# DONE: The homepage combines fresh weather and ride state into an unofficial
+# recommendation. Attraction cards support Europe/Berlin date-scoped “Gefahren”
+# tracking independent of favorite sync.
+#
+# DONE: Attractions and weather use last-successful local fallbacks with
+# explicit offline/not-live warnings. Static core pages, shows, and services are
+# precached with service-worker cache v2.
+#
+# VERIFIED: production build succeeded. /, /services, and /api/attractions
+# returned HTTP 200; trend fields were present for 30 attractions. Dashboard and
+# dispatcher timer are active.
